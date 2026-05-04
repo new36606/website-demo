@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Globelink Thailand Logistics</title>
+    <style>
+      :root {
+        --primary: #24207b;
+        --accent: #d8f500;
+        --background: #ffffff;
+        --text-dark: #111827;
+        --text-light: #6b7280;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--background);
+        color: var(--text-dark);
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Layout */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* Header */
+      header {
+        background: var(--primary);
+        color: #ffffff;
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+      }
+      nav ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav a {
+        color: #ffffff;
+        font-weight: 500;
+        transition: opacity 0.2s ease;
+      }
+      nav a:hover {
+        opacity: 0.75;
+      }
+
+      .language-toggle {
+        display: flex;
+        gap: 0.5rem;
+        margin-left: 1rem;
+      }
+      .language-toggle button {
+        background: none;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        transition: opacity 0.2s ease;
+      }
+      .language-toggle button:hover,
+      .language-toggle button.active {
+        opacity: 0.75;
+      }
+
+      /* Sections */
+      section {
+        padding: 3rem 0;
+      }
+      h2 {
+        margin-top: 0;
+        color: var(--primary);
+        font-size: 2rem;
+      }
+      .hero {
+        background: url('world-map-with-labels.svg') center/cover no-repeat;
+        color: #ffffff;
+        text-align: center;
+        padding: 6rem 1rem;
+        position: relative;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.55);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      .btn-primary {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--primary);
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        transition: background 0.2s ease;
+      }
+      .btn-primary:hover {
+        background: #c0d800;
+      }
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-between;
+      }
+      .stat-card {
+        flex: 1 1 30%;
+        background: #f3f4f6;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+      .stat-card h3 {
+        margin: 0;
+        font-size: 2rem;
+        color: var(--primary);
+      }
+      .stat-card p {
+        margin: 0;
+        color: var(--text-light);
+      }
+      .services-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .service-card {
+        flex: 1 1 45%;
+        background: #f3f4f6;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+      }
+      .service-card h3 {
+        margin-top: 0;
+        color: var(--primary);
+      }
+      .cta {
+        background: var(--primary);
+        color: #ffffff;
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+      .cta h2 {
+        color: #ffffff;
+      }
+      .contact-form {
+        display: grid;
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        width: 100%;
+      }
+      .contact-form button {
+        background: var(--accent);
+        color: var(--primary);
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .contact-form button:hover {
+        background: #c0d800;
+      }
+      footer {
+        background: #1e1b4b;
+        color: #a5b4fc;
+        padding: 2rem 0;
+      }
+      footer .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: space-between;
+      }
+      footer h4 {
+        margin-top: 0;
+        color: #ffffff;
+      }
+      footer a {
+        color: #a5b4fc;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 768px) {
+        .stats {
+          flex-direction: column;
+        }
+        .services-grid {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner">
+        <div class="logo">
+          <img src="globelink-logo.png" alt="Globelink Thailand" style="height: 40px; width: auto;" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+            <li><a href="#services" data-i18n="nav_services">Services</a></li>
+            <li><a href="#warehouse" data-i18n="nav_warehouse">Warehouse</a></li>
+            <li><a href="#network" data-i18n="nav_network">Network</a></li>
+            <li><a href="#news" data-i18n="nav_news">News</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="language-toggle">
+          <button id="lang-en" class="active">EN</button>
+          <button id="lang-th">TH</button>
+        </div>
+      </div>
+    </header>
+
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero_title">Your trusted logistics partner in Thailand</h1>
+        <p data-i18n="hero_subtitle">
+          Efficient, reliable and personalized freight services to connect your business
+          worldwide.
+        </p>
+        <a href="#contact" class="btn-primary" data-i18n="hero_cta">Get a Quote</a>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="container">
+        <div class="stats">
+          <div class="stat-card">
+            <h3 data-i18n="stats_offices">100+</h3>
+            <p data-i18n="stats_offices_label">Offices worldwide</p>
+          </div>
+          <div class="stat-card">
+            <h3 data-i18n="stats_countries">30+</h3>
+            <p data-i18n="stats_countries_label">Countries covered</p>
+          </div>
+          <div class="stat-card">
+            <h3 data-i18n="stats_years">1988</h3>
+            <p data-i18n="stats_years_label">Established in</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 data-i18n="about_title">About Globelink Thailand</h2>
+        <p data-i18n="about_text">
+          Globelink Thailand is part of CWT Globelink Group, a global logistics network
+          providing comprehensive freight forwarding services. We pride ourselves on
+          delivering reliable and cost-effective transport solutions across the globe.
+        </p>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 data-i18n="services_title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3 data-i18n="service_lcl_title">LCL Consolidation</h3>
+            <p data-i18n="service_lcl_desc">
+              Less than Container Load (LCL) consolidation services with regular sailings
+              to major ports worldwide.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3 data-i18n="service_fcl_title">FCL Forwarding</h3>
+            <p data-i18n="service_fcl_desc">
+              Full Container Load (FCL) forwarding solutions for businesses of all sizes,
+              ensuring timely and cost-effective delivery.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3 data-i18n="service_trans_title">Transshipment</h3>
+            <p data-i18n="service_trans_desc">
+              Seamless transshipment and cross-docking services to optimize supply chain
+              efficiency.
+            </p>
+          </div>
+          <div class="service-card">
+            <h3 data-i18n="service_dom_title">Domestic Distribution</h3>
+            <p data-i18n="service_dom_desc">
+              Comprehensive inland transportation and distribution services across Thailand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="warehouse">
+      <div class="container">
+        <h2 data-i18n="warehouse_title">Warehouse & CFS</h2>
+        <p data-i18n="warehouse_text">
+          Our state-of-the-art warehouse and Container Freight Station (CFS) facilities
+          provide secure storage, inventory management and value-added services.
+        </p>
+      </div>
+    </section>
+
+    <section id="network">
+      <div class="container">
+        <h2 data-i18n="network_title">Global Network</h2>
+        <p data-i18n="network_text">
+          With offices and partners in over 30 countries, our network ensures your
+          shipments are managed efficiently from origin to destination.
+        </p>
+        <img
+          src="world-map-with-labels.svg"
+          alt="World Map"
+          style="width: 100%; max-width: 800px; display: block; margin: 1rem auto;"
+        />
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <h2 data-i18n="news_title">Latest News</h2>
+        <p data-i18n="news_text">
+          Stay tuned for updates on our services, shipping schedules and industry news.
+        </p>
+      </div>
+    </section>
+
+    <section id="cta" class="cta">
+      <h2 data-i18n="cta_title">Ready to ship with us?</h2>
+      <p data-i18n="cta_text">
+        Contact our sales team for a customized logistics solution.
+      </p>
+      <a href="#contact" class="btn-primary" data-i18n="cta_button">Contact Sales</a>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 data-i18n="contact_title">Contact Us</h2>
+        <p data-i18n="contact_text">
+          Fill out the form below and our team will get back to you shortly.
+        </p>
+        <form class="contact-form">
+          <input type="text" data-i18n-placeholder="contact_name" placeholder="Your Name" />
+          <input type="email" data-i18n-placeholder="contact_email" placeholder="Your Email" />
+          <textarea rows="5" data-i18n-placeholder="contact_message" placeholder="Your Message"></textarea>
+          <button type="submit" data-i18n="contact_submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          <img src="globelink-logo.png" alt="Globelink Thailand" style="height: 40px; width: auto;" />
+          <p style="margin-top: 1rem;" data-i18n="footer_text">
+            Delivering global logistics solutions with a local touch.
+          </p>
+        </div>
+        <div>
+          <h4 data-i18n="footer_links">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+            <li><a href="#services" data-i18n="nav_services">Services</a></li>
+            <li><a href="#warehouse" data-i18n="nav_warehouse">Warehouse</a></li>
+            <li><a href="#network" data-i18n="nav_network">Network</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer_contact">Contact Info</h4>
+          <p>
+            <span data-i18n="contact_address_label">Address:</span> <span data-i18n="contact_address">Bangkok, Thailand</span>
+          </p>
+          <p>
+            <span data-i18n="contact_phone_label">Phone:</span> <span data-i18n="contact_phone">+66 2 123 4567</span>
+          </p>
+          <p>
+            <span data-i18n="contact_email_label">Email:</span> <span data-i18n="contact_email">info@globelink-thailand.com</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Translation dictionary
+      const translations = {
+        en: {
+          nav_home: 'Home',
+          nav_services: 'Services',
+          nav_warehouse: 'Warehouse',
+          nav_network: 'Network',
+          nav_news: 'News',
+          nav_contact: 'Contact',
+          hero_title: 'Your trusted logistics partner in Thailand',
+          hero_subtitle: 'Efficient, reliable and personalized freight services to connect your business worldwide.',
+          hero_cta: 'Get a Quote',
+          stats_offices: '100+',
+          stats_offices_label: 'Offices worldwide',
+          stats_countries: '30+',
+          stats_countries_label: 'Countries covered',
+          stats_years: '1988',
+          stats_years_label: 'Established in',
+          about_title: 'About Globelink Thailand',
+          about_text: 'Globelink Thailand is part of CWT Globelink Group, a global logistics network providing comprehensive freight forwarding services. We pride ourselves on delivering reliable and cost-effective transport solutions across the globe.',
+          services_title: 'Our Services',
+          service_lcl_title: 'LCL Consolidation',
+          service_lcl_desc: 'Less than Container Load (LCL) consolidation services with regular sailings to major ports worldwide.',
+          service_fcl_title: 'FCL Forwarding',
+          service_fcl_desc: 'Full Container Load (FCL) forwarding solutions for businesses of all sizes, ensuring timely and cost-effective delivery.',
+          service_trans_title: 'Transshipment',
+          service_trans_desc: 'Seamless transshipment and cross-docking services to optimize supply chain efficiency.',
+          service_dom_title: 'Domestic Distribution',
+          service_dom_desc: 'Comprehensive inland transportation and distribution services across Thailand.',
+          warehouse_title: 'Warehouse & CFS',
+          warehouse_text: 'Our state-of-the-art warehouse and Container Freight Station (CFS) facilities provide secure storage, inventory management and value-added services.',
+          network_title: 'Global Network',
+          network_text: 'With offices and partners in over 30 countries, our network ensures your shipments are managed efficiently from origin to destination.',
+          news_title: 'Latest News',
+          news_text: 'Stay tuned for updates on our services, shipping schedules and industry news.',
+          cta_title: 'Ready to ship with us?',
+          cta_text: 'Contact our sales team for a customized logistics solution.',
+          cta_button: 'Contact Sales',
+          contact_title: 'Contact Us',
+          contact_text: 'Fill out the form below and our team will get back to you shortly.',
+          contact_name: 'Your Name',
+          contact_email: 'Your Email',
+          contact_message: 'Your Message',
+          contact_submit: 'Send Message',
+          footer_text: 'Delivering global logistics solutions with a local touch.',
+          footer_links: 'Quick Links',
+          footer_contact: 'Contact Info',
+          contact_address_label: 'Address:',
+          contact_address: 'Bangkok, Thailand',
+          contact_phone_label: 'Phone:',
+          contact_phone: '+66 2 123 4567',
+          contact_email_label: 'Email:',
+          contact_email: 'info@globelink-thailand.com'
+        },
+        th: {
+          nav_home: 'หน้าแรก',
+          nav_services: 'บริการ',
+          nav_warehouse: 'คลังสินค้า',
+          nav_network: 'เครือข่าย',
+          nav_news: 'ข่าวสาร',
+          nav_contact: 'ติดต่อ',
+          hero_title: 'พันธมิตรขนส่งที่คุณไว้วางใจในประเทศไทย',
+          hero_subtitle: 'บริการขนส่งที่มีประสิทธิภาพ เชื่อถือได้ และเป็นส่วนตัว เพื่อเชื่อมต่อธุรกิจของคุณทั่วโลก',
+          hero_cta: 'ขอใบเสนอราคา',
+          stats_offices: '100+',
+          stats_offices_label: 'สำนักงานทั่วโลก',
+          stats_countries: '30+',
+          stats_countries_label: 'ประเทศที่ครอบคลุม',
+          stats_years: '1988',
+          stats_years_label: 'ก่อตั้งเมื่อปี',
+          about_title: 'เกี่ยวกับ Globelink Thailand',
+          about_text: 'Globelink Thailand เป็นส่วนหนึ่งของ CWT Globelink Group เครือข่ายโลจิสติกส์ระดับโลกที่ให้บริการส่งสินค้าครบวงจร เราภูมิใจในการให้บริการขนส่งที่เชื่อถือได้และคุ้มค่าแก่ลูกค้าทั่วโลก',
+          services_title: 'บริการของเรา',
+          service_lcl_title: 'การรวมตู้ LCL',
+          service_lcl_desc: 'บริการรวมตู้สินค้าที่มีปริมาณน้อย (LCL) พร้อมเที่ยวเรือประจำไปยังท่าเรือหลักทั่วโลก',
+          service_fcl_title: 'การขนส่งตู้ FCL',
+          service_fcl_desc: 'โซลูชันการขนส่งตู้สินค้าทั้งตู้ (FCL) สำหรับธุรกิจทุกขนาด เพื่อให้การส่งสินค้ารวดเร็วและคุ้มค่า',
+          service_trans_title: 'การส่งต่อสินค้าผ่านท่า',
+          service_trans_desc: 'บริการส่งต่อสินค้าและการจัดเรียงสินค้าข้ามท่าอย่างราบรื่น เพื่อเพิ่มประสิทธิภาพของห่วงโซ่อุปทาน',
+          service_dom_title: 'การกระจายสินค้าในประเทศ',
+          service_dom_desc: 'บริการขนส่งและกระจายสินค้าทางบกทั่วประเทศไทยอย่างครบวงจร',
+          warehouse_title: 'คลังสินค้าและ CFS',
+          warehouse_text: 'คลังสินค้าและสถานีบรรจุสินค้าคอนเทนเนอร์ (CFS) ของเรามีความทันสมัย ให้บริการจัดเก็บสินค้า การจัดการสต็อก และบริการเสริมอื่น ๆ อย่างปลอดภัย',
+          network_title: 'เครือข่ายทั่วโลก',
+          network_text: 'ด้วยสำนักงานและพันธมิตรมากกว่า 30 ประเทศ เครือข่ายของเราช่วยให้การจัดการขนส่งของคุณเป็นไปอย่างมีประสิทธิภาพตั้งแต่ต้นทางจนถึงปลายทาง',
+          news_title: 'ข่าวล่าสุด',
+          news_text: 'ติดตามข่าวสารเกี่ยวกับบริการ ตารางการขนส่ง และข่าวในวงการ',
+          cta_title: 'พร้อมส่งสินค้ากับเราหรือยัง?',
+          cta_text: 'ติดต่อทีมขายของเราเพื่อรับโซลูชันโลจิสติกส์ที่เหมาะกับคุณ',
+          cta_button: 'ติดต่อฝ่ายขาย',
+          contact_title: 'ติดต่อเรา',
+          contact_text: 'กรอกแบบฟอร์มด้านล่าง ทีมงานจะติดต่อกลับโดยเร็วที่สุด',
+          contact_name: 'ชื่อของคุณ',
+          contact_email: 'อีเมลของคุณ',
+          contact_message: 'ข้อความของคุณ',
+          contact_submit: 'ส่งข้อความ',
+          footer_text: 'มอบโซลูชันโลจิสติกส์ระดับโลกด้วยบริการที่ใกล้ชิด',
+          footer_links: 'ลิงก์ด่วน',
+          footer_contact: 'ข้อมูลติดต่อ',
+          contact_address_label: 'ที่อยู่:',
+          contact_address: 'กรุงเทพฯ ประเทศไทย',
+          contact_phone_label: 'โทร:',
+          contact_phone: '+66 2 123 4567',
+          contact_email_label: 'อีเมล:',
+          contact_email: 'info@globelink-thailand.com'
+        }
+      };
+
+      let currentLang = 'en';
+
+      function translatePage() {
+        const dict = translations[currentLang];
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) {
+            el.setAttribute('placeholder', dict[key]);
+          }
+        });
+        // Update active state on buttons
+        document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+        document.getElementById('lang-th').classList.toggle('active', currentLang === 'th');
+      }
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        translatePage();
+      }
+
+      document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+      document.getElementById('lang-th').addEventListener('click', () => setLanguage('th'));
+
+      // Initialize translation on load
+      translatePage();
+    </script>
+  </body>
+</html>
